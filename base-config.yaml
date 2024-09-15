@@ -1,0 +1,41 @@
+# Names of the command. e.g. add "w" here to make the bot respond to !w
+command_names: ["weather"]
+
+backend:
+    # Sets the default backend for weather. Some backends require an API key;
+    # see the repository's README for a more in depth comparison on what's
+    # supported where.
+    default: openmeteo
+    # How many days of forecast to fetch. Note that daily forecast is not
+    # supported by all backends
+    forecast_days: 0
+
+    openmeteo:
+        # Optional, only needed when using a paid plan
+        #api_key:
+    openweathermap:
+        api_key: "configure me!"
+    pirateweather:
+        api_key: "configure me!"
+
+geocode_backend:
+    # For geocoding (translating locations into latitude and longitude), this
+    # plugin can load any backend supported by geopy. The default (Nominatim) is
+    # used here because it does not require an API key
+    default: nominatim
+
+    # If true, prefer using weather backends' native location lookups. Only some
+    # backends support this, and accuracy may vary between them.
+    prefer_native: false
+
+    nominatim:
+        init_options:
+            # See https://geopy.readthedocs.io/en/stable/#nominatim for options
+            # Any options specified here will be passed into __init__()
+        query_args:
+            language: en
+
+output:
+    # If specified, overrides the default output format. See default_output.j2
+    # for example variables
+    custom_template:

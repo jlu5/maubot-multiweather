@@ -1,0 +1,14 @@
+maubot: 0.1.0
+id: com.jlu5.maubot.multiweather
+version: 0.1.0
+license: MIT
+modules:
+  - maubot_multiweather
+main_class: MultiweatherBot
+dependencies:
+  - multiweather # https://github.com/jlu5/multiweather
+  - geopy
+  - jinja2
+extra_files:
+- base-config.yaml
+- default_output.j2
