@@ -2,7 +2,6 @@
 Weather for **{{ location if location is string else location.address }}** - Powered by {% if weather.url %}[{{ weather.name }}]({{ weather.url }}){% else %}{{ weather.name }}{% endif %}:
 - **{{ _current.summary }}** {{ fmt.format_temp(_current.temperature) }}{% if _current.humidity is not none %} (Humidity: {{ fmt.format_percentage(_current.humidity) }}){% endif %} | **Feels like**: {{ fmt.format_temp(_current.feels_like)}}
 - **Wind**: {{ fmt.format_speed(_current.wind.speed) }} {{ fmt.format_speed(_current.wind.speed) }} | **Wind gust**: {{ fmt.format_speed(_current.wind.gust) }}
-- **UV**: {{ _current.uv_index }} | **Visibility**: {{ fmt.format_distance(_current.visibility) }}
 - **Precipitation**: {{ fmt.format_precipitation(_current.precipitation) }}{% if _current.precipitation and _current.precipitation.percentage %}( {{ fmt.format_percentage(_current.precipitation.percentage) }} PoP){% endif %}
 
 {% if weather.daily_forecast %}
