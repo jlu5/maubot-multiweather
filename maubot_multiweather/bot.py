@@ -68,13 +68,13 @@ class MultiweatherBot(Plugin):
     def _format(self, location: str | geopy.location.Location, weather_data) -> str:
         custom_template = self.config['output'].get('custom_template')
         template_text = custom_template or self.default_template
+        forecast_days = self.config['backend']['forecast_days']
 
-        template = jinja2.Environment(
-            loader=jinja2.BaseLoader(),
-        ).from_string(template_text)
+        template = jinja2.Environment(loader=jinja2.BaseLoader()).from_string(template_text)
         return template.render(
             location=location,
-            weather=weather_data)
+            weather=weather_data,
+            forecast_days=forecast_days)
 
     @command.new(aliases=_is_weather_alias)
     @command.argument("location", pass_raw=True, required=True)

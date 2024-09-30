@@ -6,7 +6,7 @@ Weather for **{{ location if location is string else location.address }}** - Pow
 
 {% if weather.daily_forecast %}
 Forecast:
-{% for forecast in weather.daily_forecast %}
+{% for forecast in weather.daily_forecast[:forecast_days] %}
 - **{{ forecast.time.strftime('%A') }}**: **{{ forecast.summary }}**. High {{ forecast.high_temperature.format() }}{% if forecast.high_feels_like %} (Feels like {{ forecast.high_feels_like.format() }}){% endif %}. Low {{ forecast.low_temperature.format() }}{% if forecast.low_feels_like %} (Feels like {{ forecast.low_feels_like.format() }}){% endif %}
 {%- endfor -%}
 {%- endif -%}
