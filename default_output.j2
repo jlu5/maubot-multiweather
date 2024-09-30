@@ -1,12 +1,12 @@
 {%- set _current = weather.current -%}
 Weather for **{{ location if location is string else location.address }}** - Powered by {% if weather.url %}[{{ weather.name }}]({{ weather.url }}){% else %}{{ weather.name }}{% endif %}:
-- **{{ _current.summary }}** {{ fmt.format_temp(_current.temperature) }}{% if _current.humidity is not none %} (Humidity: {{ fmt.format_percentage(_current.humidity) }}){% endif %} | **Feels like**: {{ fmt.format_temp(_current.feels_like)}}
-- **Wind**: {{ fmt.format_speed(_current.wind.speed) }} {{ fmt.format_angle(_current.wind.direction) }} | **Wind gust**: {{ fmt.format_speed(_current.wind.gust) }}
-- **Precipitation**: {{ fmt.format_precipitation(_current.precipitation) }}{% if _current.precipitation and _current.precipitation.percentage %}( {{ fmt.format_percentage(_current.precipitation.percentage) }} PoP){% endif %}
+- **{{ _current.summary }}** {{ _current.temperature.format() }}{% if _current.humidity is not none %} (Humidity: {{ _current.humidity }}%){% endif %} | **Feels like**: {{ _current.feels_like.format() }}
+- **Wind**: {{ _current.wind.speed.format() }} {{ _current.wind.direction.format() }} | **Wind gust**: {{ _current.wind.gust.format() }}
+- **Precipitation**: {{ _current.precipitation.format() }}
 
 {% if weather.daily_forecast %}
 Forecast:
 {% for forecast in weather.daily_forecast %}
-- **{{ forecast.time.strftime('%A') }}**: **{{ forecast.summary }}**. High {{ fmt.format_temp(forecast.high_temperature) }}{% if forecast.high_feels_like %} (Feels like {{ fmt.format_temp(forecast.high_feels_like) }}){% endif %}. Low {{ fmt.format_temp(forecast.low_temperature) }}{% if forecast.low_feels_like %} (Feels like {{ fmt.format_temp(forecast.low_feels_like) }}){% endif %}
+- **{{ forecast.time.strftime('%A') }}**: **{{ forecast.summary }}**. High {{ forecast.high_temperature.format() }}{% if forecast.high_feels_like %} (Feels like {{ forecast.high_feels_like.format() }}){% endif %}. Low {{ forecast.low_temperature.format() }}{% if forecast.low_feels_like %} (Feels like {{ forecast.low_feels_like.format() }}){% endif %}
 {%- endfor -%}
 {%- endif -%}

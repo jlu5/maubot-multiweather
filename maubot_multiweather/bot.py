@@ -6,8 +6,6 @@ import geopy
 import jinja2
 import multiweather
 
-from .formatter import FormatHelper
-
 class ConfigurationError(Exception):
     pass
 
@@ -68,7 +66,6 @@ class MultiweatherBot(Plugin):
             return result
 
     def _format(self, location: str | geopy.location.Location, weather_data) -> str:
-        formatter = FormatHelper(self.config)
         custom_template = self.config['output'].get('custom_template')
         template_text = custom_template or self.default_template
 
@@ -77,8 +74,7 @@ class MultiweatherBot(Plugin):
         ).from_string(template_text)
         return template.render(
             location=location,
-            weather=weather_data,
-            fmt=formatter)
+            weather=weather_data)
 
     @command.new(aliases=_is_weather_alias)
     @command.argument("location", pass_raw=True, required=True)
