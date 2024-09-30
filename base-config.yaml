@@ -3,8 +3,7 @@ command_names: ["weather"]
 
 backend:
     # Sets the default backend for weather. Some backends require an API key;
-    # see the repository's README for a more in depth comparison on what's
-    # supported where.
+    # see https://github.com/jlu5/multiweather/blob/main/README.md for details
     default: openmeteo
     # How many days of forecast to fetch. Note that daily forecast is not
     # supported by all backends
