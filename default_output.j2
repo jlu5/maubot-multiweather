@@ -1,6 +1,6 @@
 {%- set _current = weather.current -%}
 Weather for **{{ location if location is string else location.address }}** - Powered by {% if weather.url %}[{{ weather.name }}]({{ weather.url }}){% else %}{{ weather.name }}{% endif %}:
-- **{{ _current.summary }}** {{ _current.temperature.format() }}{% if _current.humidity is not none %} (Humidity: {{ _current.humidity }}%){% endif %} | **Feels like**: {{ _current.feels_like.format() }}
+- **{{ _current.summary }}** {{ _current.temperature.format() }}{% if _current.humidity is not none %} (Humidity: {{ _current.humidity | round(1) }}%){% endif %} | **Feels like**: {{ _current.feels_like.format() }}
 - **Wind**: {{ _current.wind.speed.format() }} {{ _current.wind.direction.format() }} | **Wind gust**: {{ _current.wind.gust.format() }}
 - **Precipitation**: {{ _current.precipitation.format() }}
 
